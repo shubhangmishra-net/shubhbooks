@@ -15,7 +15,7 @@
     "rolldown": "1.2.1"
   },
   "dependencies": {
-  "@vercel/analytics": "^1.2.2",
+    "@vercel/analytics": "^1.2.2",
     "@ai-sdk/openai": "^4.0.78",
     "@ai-sdk/react": "^4.0.121",
     "@hookform/resolvers": "^5.2.2",
@@ -84,7 +84,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.32.0",
-    "@lovable.dev/vite-tanstack-config": "2.26.0",
+    "@lovable.dev/vite-tanstack-config": "2.26.5",
     "@types/node": "^22.16.5",
     "@types/react": "^19.2.0",
     "@types/react-dom": "^19.2.0",
