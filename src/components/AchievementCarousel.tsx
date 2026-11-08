@@ -173,11 +173,11 @@ export function AchievementCarousel() {
           </span>
         </div>
         <h1 className="font-display text-4xl font-medium italic md:text-5xl">
-          Achievement Portfolio
+          Shubhang Mishra: Young Author
         </h1>
         <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-muted-foreground sm:text-base">
-          A curated collection of accolades in creative writing, international
-          spelling, and publication.
+          A portfolio of Shubhang&rsquo;s writing, published stories, and achievements in creative writing,
+          international spelling, music, and academics.
         </p>
       </header>
 
