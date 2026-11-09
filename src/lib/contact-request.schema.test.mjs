@@ -1,6 +1,6 @@
 import { describe, expect, it } from "bun:test";
 
-import { contactRequestSchema } from "./contact-request.schema";
+import { contactRequestSchema } from "./contact-request.schema.ts";
 
 describe("contact request validation", () => {
   it("accepts a valid request within the form's 2,000-character message limit", () => {
