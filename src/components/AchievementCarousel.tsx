@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
+import { ContactForm } from "@/components/ContactForm";
 
 import a1 from "@/assets/achievement-1.jpg.asset.json";
 import a2 from "@/assets/achievement-2.jpg.asset.json";
@@ -327,6 +328,8 @@ export function AchievementCarousel() {
         </div>
         <a href="/book-views" target="_blank" rel="noopener noreferrer" className="mt-5 inline-block text-sm text-gold underline underline-offset-4">See live book views &amp; ask about the stories ↗</a>
       </section>
+
+      <ContactForm />
 
       {/* Footer */}
       <footer className="mx-auto w-full max-w-2xl px-6 pb-8 text-center">

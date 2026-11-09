@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "events": {
+    "project.contact_request_submitted": {
+      "event_schema_version": 1,
+      "description": "A reader contact request was successfully saved.",
+      "privacy": {
+        "contains_pii": false,
+        "purpose": "product_analytics"
+      },
+      "properties_schema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {}
+      }
+    }
+  }
+}

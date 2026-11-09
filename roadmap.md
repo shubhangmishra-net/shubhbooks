@@ -4,6 +4,7 @@
 - [x] Fix analytics page stuck on morning snapshot: refresh whenever newest snapshot is >30 min old, even same-day. Verified live.
 - [x] Fix GA4 tracking shim in src/lib/analytics.ts so visit pings reach Google. Verified: collect hits fire to G-H7NE6DQZG1 on /, /book-views, /promo on the live site.
 - [x] Build /promo QR ad screen: Fox cover, live reader count, QR to /book-views, BriBooks buy links, Rao cross-promo.
+- [x] Add a homepage contact form that saves requests privately and records successful submissions in analytics.
 - [x] Add /promo to sitemap.xml and reference sitemap from robots.txt.
 - [x] Rename the site to shubhbooks.lovable.app; sitemap, robots and the promo QR link updated; published and verified.
 - [ ] User formalities after the rename: Google Sites embeds, QR codes, BriBooks listing links, GA4 data-stream URL, new Search Console property + sitemap submit.
