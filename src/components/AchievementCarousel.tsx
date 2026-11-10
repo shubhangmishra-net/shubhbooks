@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
+import { trackEvent } from "@/lib/analytics";
 import { ContactForm } from "@/components/ContactForm";
 
 import a1 from "@/assets/achievement-1.jpg.asset.json";
@@ -83,6 +84,42 @@ export function AchievementCarousel() {
   const [index, setIndex] = useState(0);
   const [dragDx, setDragDx] = useState(0);
   const [lightbox, setLightbox] = useState<number | null>(null);
+    const [copiedBook, setCopiedBook] = useState<string | null>(null);
+
+  const handleShare = async (e: React.MouseEvent, book: { title: string }) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    const refTag = book.title.toLowerCase().includes("fox") ? "share_fox" : "share_rao";
+    const shareUrl = `${window.location.origin}/?ref=${refTag}`;
+    const shareData = {
+      title: `${book.title} by Shubhang Mishra`,
+      text: `Read "${book.title}" by young author Shubhang Mishra!`,
+      url: shareUrl,
+    };
+
+    trackEvent("share_book_clicked", {
+      book_title: book.title,
+      ref_tag: refTag,
+    });
+
+    if (navigator.share) {
+      try {
+        await navigator.share(shareData);
+        return;
+      } catch {
+        // User closed the share menu or canceled
+      }
+    }
+
+    try {
+      await navigator.clipboard.writeText(`${shareData.text} ${shareUrl}`);
+      setCopiedBook(book.title);
+      setTimeout(() => setCopiedBook(null), 2500);
+    } catch (err) {
+      console.error("Failed to copy link", err);
+    }
+  };
 
   const viewportRef = useRef<HTMLDivElement>(null);
   const draggingRef = useRef(false);
@@ -311,19 +348,31 @@ export function AchievementCarousel() {
         <p className="text-[11px] font-semibold uppercase text-gold">From the author</p>
         <h2 id="books-heading" className="mt-2 font-display text-2xl">The stories behind the awards</h2>
         <p className="mx-auto mt-2 max-w-lg text-sm leading-relaxed text-muted-foreground">Explore Shubhang Mishra&rsquo;s children&rsquo;s forest story and expedition tale, published on BriBooks.</p>
-        <div className="mt-5 grid gap-3 sm:grid-cols-2">
+                <div className="mt-5 grid gap-3 sm:grid-cols-2">
           {[
             { title: "The Fox and the Cub", type: "A forest story", cover: foxCover.url, url: "https://www.bribooks.com/bookstore/the-fox-and-cub/" },
             { title: "Rao's Expedition Book", type: "An expedition story", cover: raoCover.url, url: "https://www.bribooks.com/bookstore/rao-s-expedition-book/" },
           ].map((book) => (
-            <a key={book.title} href={book.url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 rounded-md border border-border bg-card p-3 text-left transition-colors hover:border-gold/60">
-              <img src={book.cover} alt={`${book.title} cover`} loading="lazy" className="h-24 w-16 shrink-0 object-contain" />
-              <span className="min-w-0">
-                <span className="block text-[10px] uppercase text-gold">{book.type}</span>
-                <span className="mt-1 block font-display text-lg leading-tight">{book.title}</span>
-                <span className="mt-2 block text-xs text-gold-soft">Preview &amp; buy on BriBooks ↗</span>
-              </span>
-            </a>
+            <div key={book.title} className="flex flex-col justify-between rounded-md border border-border bg-card p-3 text-left transition-colors hover:border-gold/60">
+              <a href={book.url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-4">
+                <img src={book.cover} alt={`${book.title} cover`} loading="lazy" className="h-24 w-16 shrink-0 object-contain" />
+                <span className="min-w-0">
+                  <span className="block text-[10px] uppercase text-gold">{book.type}</span>
+                  <span className="mt-1 block font-display text-lg leading-tight">{book.title}</span>
+                  <span className="mt-2 block text-xs text-gold-soft">Preview &amp; buy on BriBooks →</span>
+                </span>
+              </a>
+              <div className="mt-3 flex items-center justify-between border-t border-border/40 pt-2">
+                <button
+                  type="button"
+                  onClick={(e) => handleShare(e, book)}
+                  className="inline-flex items-center gap-1.5 rounded-full border border-gold/40 bg-gold/10 px-3 py-1 text-[11px] font-semibold text-gold transition-all hover:bg-gold hover:text-primary-foreground active:scale-95"
+                >
+                  {copiedBook === book.title ? "✓ Link Copied!" : "📤 Share Story"}
+                </button>
+                <span className="text-[10px] text-muted-foreground/70">Share with friends</span>
+              </div>
+            </div>
           ))}
         </div>
         <a href="/book-views" target="_blank" rel="noopener noreferrer" className="mt-5 inline-block text-sm text-gold underline underline-offset-4">See live book views &amp; ask about the stories ↗</a>
