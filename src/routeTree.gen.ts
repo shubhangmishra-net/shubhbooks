@@ -14,7 +14,7 @@ import { Route as BookViewsRouteImport } from './routes/book-views'
 import { Route as ContactExportRouteImport } from './routes/contact-export'
 import { Route as PromoRouteImport } from './routes/promo'
 import { Route as ApiChatRouteImport } from './routes/api/chat'
-import { Route as ApiContactReportRouteImport } from './routes/api/contact-report'
+import { Route as ApiPublicContactReportRouteImport } from './routes/api/public/contact-report'
 import { Route as ApiPublicQuestionsReportRouteImport } from './routes/api/public/questions-report'
 import { Route as ApiPublicRefreshViewsRouteImport } from './routes/api/public/refresh-views'
 
@@ -43,9 +43,9 @@ const ApiChatRoute = ApiChatRouteImport.update({
   path: '/api/chat',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ApiContactReportRoute = ApiContactReportRouteImport.update({
-  id: '/api/contact-report',
-  path: '/api/contact-report',
+const ApiPublicContactReportRoute = ApiPublicContactReportRouteImport.update({
+  id: '/api/public/contact-report',
+  path: '/api/public/contact-report',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApiPublicQuestionsReportRoute =
@@ -66,7 +66,7 @@ export interface FileRoutesByFullPath {
   '/contact-export': typeof ContactExportRoute
   '/promo': typeof PromoRoute
   '/api/chat': typeof ApiChatRoute
-  '/api/contact-report': typeof ApiContactReportRoute
+  '/api/public/contact-report': typeof ApiPublicContactReportRoute
   '/api/public/questions-report': typeof ApiPublicQuestionsReportRoute
   '/api/public/refresh-views': typeof ApiPublicRefreshViewsRoute
 }
@@ -76,7 +76,7 @@ export interface FileRoutesByTo {
   '/contact-export': typeof ContactExportRoute
   '/promo': typeof PromoRoute
   '/api/chat': typeof ApiChatRoute
-  '/api/contact-report': typeof ApiContactReportRoute
+  '/api/public/contact-report': typeof ApiPublicContactReportRoute
   '/api/public/questions-report': typeof ApiPublicQuestionsReportRoute
   '/api/public/refresh-views': typeof ApiPublicRefreshViewsRoute
 }
@@ -87,7 +87,7 @@ export interface FileRoutesById {
   '/contact-export': typeof ContactExportRoute
   '/promo': typeof PromoRoute
   '/api/chat': typeof ApiChatRoute
-  '/api/contact-report': typeof ApiContactReportRoute
+  '/api/public/contact-report': typeof ApiPublicContactReportRoute
   '/api/public/questions-report': typeof ApiPublicQuestionsReportRoute
   '/api/public/refresh-views': typeof ApiPublicRefreshViewsRoute
 }
@@ -99,7 +99,7 @@ export interface FileRouteTypes {
     | '/contact-export'
     | '/promo'
     | '/api/chat'
-    | '/api/contact-report'
+    | '/api/public/contact-report'
     | '/api/public/questions-report'
     | '/api/public/refresh-views'
   fileRoutesByTo: FileRoutesByTo
@@ -109,7 +109,7 @@ export interface FileRouteTypes {
     | '/contact-export'
     | '/promo'
     | '/api/chat'
-    | '/api/contact-report'
+    | '/api/public/contact-report'
     | '/api/public/questions-report'
     | '/api/public/refresh-views'
   id:
@@ -119,7 +119,7 @@ export interface FileRouteTypes {
     | '/contact-export'
     | '/promo'
     | '/api/chat'
-    | '/api/contact-report'
+    | '/api/public/contact-report'
     | '/api/public/questions-report'
     | '/api/public/refresh-views'
   fileRoutesById: FileRoutesById
@@ -130,7 +130,7 @@ export interface RootRouteChildren {
   ContactExportRoute: typeof ContactExportRoute
   PromoRoute: typeof PromoRoute
   ApiChatRoute: typeof ApiChatRoute
-  ApiContactReportRoute: typeof ApiContactReportRoute
+  ApiPublicContactReportRoute: typeof ApiPublicContactReportRoute
   ApiPublicQuestionsReportRoute: typeof ApiPublicQuestionsReportRoute
   ApiPublicRefreshViewsRoute: typeof ApiPublicRefreshViewsRoute
 }
@@ -172,11 +172,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiChatRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/api/contact-report': {
-      id: '/api/contact-report'
-      path: '/api/contact-report'
-      fullPath: '/api/contact-report'
-      preLoaderRoute: typeof ApiContactReportRouteImport
+    '/api/public/contact-report': {
+      id: '/api/public/contact-report'
+      path: '/api/public/contact-report'
+      fullPath: '/api/public/contact-report'
+      preLoaderRoute: typeof ApiPublicContactReportRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/public/questions-report': {
@@ -202,7 +202,7 @@ const rootRouteChildren: RootRouteChildren = {
   ContactExportRoute: ContactExportRoute,
   PromoRoute: PromoRoute,
   ApiChatRoute: ApiChatRoute,
-  ApiContactReportRoute: ApiContactReportRoute,
+  ApiPublicContactReportRoute: ApiPublicContactReportRoute,
   ApiPublicQuestionsReportRoute: ApiPublicQuestionsReportRoute,
   ApiPublicRefreshViewsRoute: ApiPublicRefreshViewsRoute,
 }
