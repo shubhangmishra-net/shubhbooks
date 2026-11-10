@@ -11,8 +11,10 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as BookViewsRouteImport } from './routes/book-views'
+import { Route as ContactExportRouteImport } from './routes/contact-export'
 import { Route as PromoRouteImport } from './routes/promo'
 import { Route as ApiChatRouteImport } from './routes/api/chat'
+import { Route as ApiPublicContactReportRouteImport } from './routes/api/public/contact-report'
 import { Route as ApiPublicQuestionsReportRouteImport } from './routes/api/public/questions-report'
 import { Route as ApiPublicRefreshViewsRouteImport } from './routes/api/public/refresh-views'
 
@@ -26,6 +28,11 @@ const BookViewsRoute = BookViewsRouteImport.update({
   path: '/book-views',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ContactExportRoute = ContactExportRouteImport.update({
+  id: '/contact-export',
+  path: '/contact-export',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PromoRoute = PromoRouteImport.update({
   id: '/promo',
   path: '/promo',
@@ -34,6 +41,11 @@ const PromoRoute = PromoRouteImport.update({
 const ApiChatRoute = ApiChatRouteImport.update({
   id: '/api/chat',
   path: '/api/chat',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiPublicContactReportRoute = ApiPublicContactReportRouteImport.update({
+  id: '/api/public/contact-report',
+  path: '/api/public/contact-report',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApiPublicQuestionsReportRoute =
@@ -51,16 +63,20 @@ const ApiPublicRefreshViewsRoute = ApiPublicRefreshViewsRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/book-views': typeof BookViewsRoute
+  '/contact-export': typeof ContactExportRoute
   '/promo': typeof PromoRoute
   '/api/chat': typeof ApiChatRoute
+  '/api/public/contact-report': typeof ApiPublicContactReportRoute
   '/api/public/questions-report': typeof ApiPublicQuestionsReportRoute
   '/api/public/refresh-views': typeof ApiPublicRefreshViewsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/book-views': typeof BookViewsRoute
+  '/contact-export': typeof ContactExportRoute
   '/promo': typeof PromoRoute
   '/api/chat': typeof ApiChatRoute
+  '/api/public/contact-report': typeof ApiPublicContactReportRoute
   '/api/public/questions-report': typeof ApiPublicQuestionsReportRoute
   '/api/public/refresh-views': typeof ApiPublicRefreshViewsRoute
 }
@@ -68,8 +84,10 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/book-views': typeof BookViewsRoute
+  '/contact-export': typeof ContactExportRoute
   '/promo': typeof PromoRoute
   '/api/chat': typeof ApiChatRoute
+  '/api/public/contact-report': typeof ApiPublicContactReportRoute
   '/api/public/questions-report': typeof ApiPublicQuestionsReportRoute
   '/api/public/refresh-views': typeof ApiPublicRefreshViewsRoute
 }
@@ -78,24 +96,30 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/book-views'
+    | '/contact-export'
     | '/promo'
     | '/api/chat'
+    | '/api/public/contact-report'
     | '/api/public/questions-report'
     | '/api/public/refresh-views'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/book-views'
+    | '/contact-export'
     | '/promo'
     | '/api/chat'
+    | '/api/public/contact-report'
     | '/api/public/questions-report'
     | '/api/public/refresh-views'
   id:
     | '__root__'
     | '/'
     | '/book-views'
+    | '/contact-export'
     | '/promo'
     | '/api/chat'
+    | '/api/public/contact-report'
     | '/api/public/questions-report'
     | '/api/public/refresh-views'
   fileRoutesById: FileRoutesById
@@ -103,8 +127,10 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   BookViewsRoute: typeof BookViewsRoute
+  ContactExportRoute: typeof ContactExportRoute
   PromoRoute: typeof PromoRoute
   ApiChatRoute: typeof ApiChatRoute
+  ApiPublicContactReportRoute: typeof ApiPublicContactReportRoute
   ApiPublicQuestionsReportRoute: typeof ApiPublicQuestionsReportRoute
   ApiPublicRefreshViewsRoute: typeof ApiPublicRefreshViewsRoute
 }
@@ -125,6 +151,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BookViewsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/contact-export': {
+      id: '/contact-export'
+      path: '/contact-export'
+      fullPath: '/contact-export'
+      preLoaderRoute: typeof ContactExportRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/promo': {
       id: '/promo'
       path: '/promo'
@@ -137,6 +170,13 @@ declare module '@tanstack/react-router' {
       path: '/api/chat'
       fullPath: '/api/chat'
       preLoaderRoute: typeof ApiChatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/contact-report': {
+      id: '/api/public/contact-report'
+      path: '/api/public/contact-report'
+      fullPath: '/api/public/contact-report'
+      preLoaderRoute: typeof ApiPublicContactReportRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/public/questions-report': {
@@ -159,8 +199,10 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BookViewsRoute: BookViewsRoute,
+  ContactExportRoute: ContactExportRoute,
   PromoRoute: PromoRoute,
   ApiChatRoute: ApiChatRoute,
+  ApiPublicContactReportRoute: ApiPublicContactReportRoute,
   ApiPublicQuestionsReportRoute: ApiPublicQuestionsReportRoute,
   ApiPublicRefreshViewsRoute: ApiPublicRefreshViewsRoute,
 }

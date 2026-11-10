@@ -11,4 +11,4 @@
 
 - Single-purpose site: / is the achievement carousel for Google Sites iframe embedding. Slides are CDN asset pointer imports (src/assets/*.asset.json) — never inline the binaries. Keep the page self-contained and fully interactive inside a cross-origin iframe.
 - Book promotion uses verified BriBooks product URLs and locally served cover asset pointers; embedded pages must not rely on access to their Google Sites parent frame.
-- Public contact submissions use a validated TanStack server function and a server-only database client; keep message reads and writes out of browser code to protect visitor details.
+- Public contact submissions use a validated TanStack server function and server-only database access; export reads stay server-side and require a private access code because they contain visitor details.
