@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 
 import { contactReportKeyMatches, contactRowsToCsv } from "@/lib/contact-report";
 
-export const Route = createFileRoute("/api/contact-report")({
+export const Route = createFileRoute("/api/public/contact-report")({
   server: {
     handlers: {
       POST: async ({ request }) => {

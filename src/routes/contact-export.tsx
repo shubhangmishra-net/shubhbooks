@@ -31,7 +31,7 @@ function ContactExportPage() {
     setStatus("downloading");
 
     try {
-      const response = await fetch("/api/contact-report", {
+      const response = await fetch("/api/public/contact-report", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ accessCode }),
